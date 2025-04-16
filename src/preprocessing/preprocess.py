@@ -6,6 +6,7 @@ def main():
     from pathlib import Path
 
     from src.preprocessing.ingestion import parquet_ingest, read_datapath
+    from src.preprocessing.vocab import build_vocab
 
     # Get the project root directory
     # This assumes ingestion.py is in src/preprocessing/
@@ -22,6 +23,10 @@ def main():
     print(f"Successfully loaded data from {hf_path}")
     print(f"DataFrame columns: {df.columns}")
     print(f"DataFrame shape: {df.shape}")
+
+    # Build a vocabulary from the text data
+    vocab = build_vocab(df, "tweet")
+    print(vocab)
 
 if __name__ == "__main__":
     main()

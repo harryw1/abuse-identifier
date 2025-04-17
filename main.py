@@ -30,6 +30,7 @@ param_grid = {
     'n_estimators': [int(x) for x in np.linspace(start=100, stop=1000, num=10)],
     'max_features': ["auto", "sqrt"],
     'max_depth': [int(x) for x in np.linspace(5, 50, 10)],
+    
     'min_samples_split': [2,5,10],
     'min_samples_leaf': [1,2,4],
     'bootstrap': [True,False]

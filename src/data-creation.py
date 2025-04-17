@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 def generate_csv(file_name, num_rows):
     # Define the column names
-    columns = ["account_id", "date_created", "message_duplicates", "message_length_avg", "links_shared", "is_bot"]
+    columns = ["account_id", "date_created", "days_old", "message_duplicates", "message_length_avg", "links_shared", "is_bot"]
 
     # Open the file for writing
     with open(file_name, mode='w', newline='') as file:
@@ -18,18 +18,22 @@ def generate_csv(file_name, num_rows):
 
             # Adjust values based on whether it's a bot
             if is_bot:
-                date_created = (datetime.now() - timedelta(days=random.randint(0, 30))).strftime('%Y-%m-%d')  # More recent account (last 30 days)
+                days_old = random.randint(0, 365*1)
+                td_days_old = timedelta(days=days_old)
+                date_created = (datetime.now() - td_days_old).strftime('%Y-%m-%d')  # More recent account (last 30 days)
                 message_duplicates = random.randint(10, 50)  # Higher range for bots
                 message_length_avg = random.randint(100, 500)  # Longer average message length
                 links_shared = random.randint(20, 50)  # More links shared
             else:
-                date_created = (datetime.now() - timedelta(days=random.randint(0, 365))).strftime('%Y-%m-%d')  # Older account (31 to 365 days)
+                days_old = random.randint(0, 365*4)
+                td_days_old = timedelta(days=days_old)
+                date_created = (datetime.now() - td_days_old).strftime('%Y-%m-%d')  # Older account (31 to 365 days)
                 message_duplicates = random.randint(1, 10)  # Lower range for non-bots
                 message_length_avg = random.randint(1, 200)  # Shorter average message length
                 links_shared = random.randint(0, 20)  # Fewer links shared
 
             # Write the row
-            writer.writerow([account_id, date_created, message_duplicates, message_length_avg, links_shared, is_bot])
+            writer.writerow([account_id, date_created, days_old, message_duplicates, message_length_avg, links_shared, is_bot])
 
 # Example usage
 if __name__ == "__main__":

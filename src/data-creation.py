@@ -33,4 +33,4 @@ def generate_csv(file_name, num_rows):
 
 # Example usage
 if __name__ == "__main__":
-    generate_csv("./data/output.csv", 1000)  # Generate a CSV with 1000 rows
+    generate_csv("./data/output.csv", 100000)  # Generate a CSV with 1000 rows

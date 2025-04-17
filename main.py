@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 
 # %% load data
-df = pd.read_csv("/Users/harrisonweiss/Documents/abuse-identifier/data/output.csv")
+df = pd.read_csv("./data/output.csv")
 df.head()
 
 # %% create regressor
